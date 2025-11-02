@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sj Studio - Feedback & Chat</title>
+    <style>
+/* --- அடிப்படை ஸ்டைல்கள் --- */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f0f2f5; /* மென்மையான சாம்பல் பின்னணி */
+    color: #333;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+.content-wrapper {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* --- தலைப்பு (Header) --- */
+.main-header {
+    background-color: #2c3e50; /* அடர் நீல பின்னணி */
+    color: #ecf0f1;
+    padding: 15px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    font-size: 1.8em;
+    font-weight: 700;
+    color: #f1c40f; /* மஞ்சள் உச்சரிப்பு நிறம் */
+}
+
+.main-nav a {
+    color: #ecf0f1;
+    text-decoration: none;
+    margin-left: 25px;
+    font-weight: 400;
+    transition: color 0.3s;
+}
+
+.main-nav a:hover {
+    color: #3498db; /* ஹேவர் செய்யும் போது நீலம் */
+}
+
+/* --- பொதுப் பிரிவு தலைப்பு (Section Title) --- */
+.section-title {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 30px;
+    font-size: 2em;
+    border-bottom: 2px solid #3498db;
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+/* --- பொதுவான பத்தி (Paragraphs) --- */
+section p {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #555;
+}
+
+/* --- கருத்து படிவப் பகுதி (Feedback Form Styling) --- */
+.feedback-section {
+    padding: 40px 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 40px;
+}
+
+.feedback-form {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: left;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 700;
+    color: #2c3e50;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; /* Padding-ஐ அகலத்திற்குள் வைக்கிறது */
+}
+
+.feedback-form button {
+    width: 100%;
+    background-color: #e67e22; /* ஆரஞ்சு நிறம் */
+    color: white; /* பொத்தான் எழுத்து நிறம் */
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 15px;
+    transition: background-color 0.3s;
+}
+
+.feedback-form button:hover {
+    background-color: #d35400;
+}
+
+.message-status {
+    text-align: center;
+    margin-top: 15px;
+    font-weight: 700;
+    color: #2ecc71; /* பச்சை நிறத்தில் வெற்றிச் செய்தி */
+}
+
+
+/* --- Chat Section Styling --- */
+.chat-section {
+    padding: 40px 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 40px;
+}
+
+.chat-container {
+    max-width: 600px;
+    margin: 0 auto;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 450px; /* Chat box உயரம் */
+    background-color: #f9f9f9;
+}
+
+.chat-messages {
+    flex-grow: 1;
+    padding: 15px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.chat-input {
+    display: flex;
+    padding: 10px;
+    border-top: 1px solid #eee;
+    background-color: #fff;
+}
+
+#chatInput {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-right: 10px;
+}
+
+.chat-input button {
+    padding: 10px 20px;
+    margin-top: 0;
+    background-color: #2ecc71; /* பச்சை நிறம் */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.chat-input button:hover {
+    background-color: #27ae60;
+}
+
+/* தனிப்பட்ட செய்தி ஸ்டைல்கள் */
+.message {
+    padding: 10px 12px;
+    margin-bottom: 10px;
+    border-radius: 18px; /* மென்மையான வட்டமான மூலைகள் */
+    max-width: 75%;
+    line-height: 1.4;
+    font-size: 0.95em;
+    word-wrap: break-word; /* நீண்ட வார்த்தைகளை உடைக்கிறது */
+}
+
+.system-message {
+    background-color: #e0f2f7; /* லேசான நீல பின்னணி */
+    color: #2c3e50;
+    align-self: flex-start; /* இடதுபுறம் சீரமைக்கிறது */
+    border-bottom-left-radius: 2px; /* சற்று சாதாரணமாக */
+}
+
+.user-message {
+    background-color: #3498db; /* நீல பின்னணி */
+    color: white;
+    margin-left: auto; /* வலதுபுறம் சீரமைக்கிறது */
+    border-bottom-right-radius: 2px; /* சற்று சாதாரணமாக */
+}
+
+
+/* --- அடிக்குறிப்பு (Footer) --- */
+.site-footer {
+    background-color: #2c3e50;
+    color: #bdc3c7;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 40px;
+    font-size: 0.9em;
+}
+
+/* --- பதிலளிக்கக்கூடிய வடிவமைப்பு (Responsive Design) --- */
+@media (max-width: 600px) {
+    .main-header {
+        flex-direction: column;
+        text-align: center;
+        padding: 15px 10px;
+    }
+    .main-nav {
+        margin-top: 10px;
+    }
+    .main-nav a {
+        margin: 0 10px;
+    }
+    .feedback-form, .chat-container {
+        padding: 10px;
+    }
+    .chat-messages {
+        height: 300px; /* சிறிய திரையில் உயரத்தைக் குறைக்கிறது */
+    }
+}
+
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="main-header">
+        <div class="logo">Sj Studio</div>
+        <nav class="main-nav">
+            <a href="sj studio.html">முகப்பு (Home)</a> <a href="feedback.html">கருத்து</a>
+            <a href="#chat-section">நேரடி அரட்டை</a>
+        </nav>
+    </header>
+
+    <main class="content-wrapper">
+        <section id="feedback-section" class="feedback-section">
+            <h2 class="section-title">உங்கள் கருத்துக்களைப் பகிரவும்</h2>
+            <p>எங்கள் தயாரிப்புகள் அல்லது சேவைகளைப் பற்றிய உங்கள் எண்ணங்களை நாங்கள் கேட்க விரும்புகிறோம்.</p>
+            <form id="feedback-form" class="feedback-form">
+                <div class="form-group">
+                    <label for="name">பெயர்:</label>
+                    <input type="text" id="name" name="name" required placeholder="உங்கள் பெயரை உள்ளிடவும்">
+                </div>
+                <div class="form-group">
+                    <label for="email">மின்னஞ்சல்:</label>
+                    <input type="email" id="email" name="email" required placeholder="your.email@example.com">
+                </div>
+                <div class="form-group">
+                    <label for="subject">பொருள்:</label>
+                    <input type="text" id="subject" name="subject" placeholder="கருத்தின் சுருக்கம்">
+                </div>
+                <div class="form-group">
+                    <label for="message">உங்கள் கருத்து:</label>
+                    <textarea id="message" name="message" rows="7" required placeholder="உங்கள் கருத்துக்களை இங்கே தட்டச்சு செய்யவும்..."></textarea>
+                </div>
+                <button type="submit">கருத்தைச் சமர்ப்பிக்கவும்</button>
+                <p id="feedback-message" class="message-status"></p>
+            </form>
+        </section>
+
+        <section id="chat-section" class="chat-section">
+            <h2 class="section-title">நேரடி அரட்டை ஆதரவு</h2>
+            <p>உங்களுக்கு ஏதேனும் கேள்விகள் இருந்தால், எங்கள் ஆதரவு குழுவுடன் அரட்டையடிக்கவும்.</p>
+            <div class="chat-container">
+                <div class="chat-messages" id="chatMessages">
+                    <div class="message system-message">வணக்கம்! Sj Studio-க்கு வரவேற்கிறோம். உங்களுக்கு எப்படி உதவ முடியும்?</div>
+                    <div class="message system-message">தயவுசெய்து உங்கள் கேள்வியைத் தட்டச்சு செய்யவும்.</div>
+                </div>
+                <div class="chat-input">
+                    <input type="text" id="chatInput" placeholder="உங்கள் செய்தியை உள்ளிடவும்..." onkeydown="handleChatInput(event)">
+                    <button onclick="sendChatMessage()">அனுப்பு</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; 2025 Sj Studio. அனைத்து உரிமைகளும் பாதுகாக்கப்பட்டவை. | உள்ளடக்கம் பொழுதுபோக்கு நோக்கங்களுக்காக மட்டுமே.</p>
+    </footer>
+
+    <script >
+// --- Feedback Form Functionality ---
+document.getElementById('feedback-form').addEventListener('submit', function(event) {
+    event.preventDefault(); // படிவம் தானாக சமர்ப்பிப்பதைத் தடுக்கிறது
+    
+    // இங்கே சர்வர் தர்க்கம் இல்லாததால், வெற்றியைப் போலக் காட்டுகிறது
+    const name = document.getElementById('name').value;
+    const messageStatus = document.getElementById('feedback-message');
+
+    messageStatus.textContent = `நன்றி, ${name}! உங்கள் கருத்து வெற்றிகரமாக சமர்ப்பிக்கப்பட்டது.`;
+    messageStatus.style.color = '#2ecc71'; // பச்சை நிறச் செய்தி
+
+    // படிவத்தை 3 வினாடிகளுக்குப் பிறகு அழிக்கிறது
+    setTimeout(() => {
+        document.getElementById('feedback-form').reset(); // படிவத்தை மீட்டமைக்கிறது
+        messageStatus.textContent = ''; // செய்தியை நீக்குகிறது
+    }, 3000);
+});
+
+
+// --- Chat Widget Functionality ---
+const chatMessages = document.getElementById('chatMessages');
+const chatInput = document.getElementById('chatInput');
+
+function sendChatMessage() {
+    const messageText = chatInput.value.trim(); // உள்ளீட்டில் உள்ள வெற்று இடங்களை நீக்குகிறது
+    if (messageText === "") return; // செய்தி வெற்று என்றால் எதையும் செய்யாதே
+
+    // பயனரின் செய்தியைச் சேர்
+    addMessage(messageText, 'user-message');
+    chatInput.value = ''; // உள்ளீட்டை அழிக்கிறது
+
+    // தானியங்கி பதில் (ஒரு உண்மையான அரட்டைக்கு சர்வர்-பக்க தர்க்கம் தேவைப்படும்)
+    setTimeout(() => {
+        let reply = "எங்கள் ஆதரவு குழு விரைவில் உங்களுக்கு பதிலளிக்கும். பொறுமைக்கு நன்றி!";
+        if (messageText.toLowerCase().includes("வணக்கம்")) {
+            reply = "வணக்கம்! உங்களுக்கு எப்படி உதவ முடியும்?";
+        } else if (messageText.toLowerCase().includes("விளையாட்டு")) {
+            reply = "எங்கள் வலைத்தளத்தில் பல அற்புதமான விளையாட்டுகள் உள்ளன. எதைப் பற்றி அறிய விரும்புகிறீர்கள்?";
+        } else if (messageText.toLowerCase().includes("கருத்து")) {
+            reply = "உங்கள் கருத்தை எங்கள் கருத்துப் படிவத்தின் மூலம் சமர்ப்பிக்கலாம்!";
+        }
+        addMessage(reply, 'system-message');
+    }, 1000 + Math.random() * 1000); // 1-2 வினாடிகளுக்குள் பதில்
+}
+
+// Enter பட்டனை அழுத்தினால் செய்தியை அனுப்பும் செயல்பாடு
+function handleChatInput(event) {
+    if (event.key === 'Enter') {
+        sendChatMessage();
+    }
+}
+
+// அரட்டைப் பெட்டியில் செய்திகளைச் சேர்க்கும் செயல்பாடு
+function addMessage(text, type) {
+    const messageDiv = document.createElement('div');
+    messageDiv.classList.add('message', type);
+    messageDiv.textContent = text;
+    chatMessages.appendChild(messageDiv);
+    
+    // அரட்டையின் கீழ் பகுதிக்கு தானாக ஸ்க்ரோல் செய்கிறது
+    chatMessages.scrollTop = chatMessages.scrollHeight; 
+}
+
+// தொடக்கத்தில் ஒரு வரவேற்புச் செய்தியைச் சேர்க்கவும் (DOM தயாரானதும்)
+document.addEventListener('DOMContentLoaded', () => {
+    // சில தொடக்க செய்திகள் ஏற்கனவே HTML இல் உள்ளன
+    // தேவைப்பட்டால் நீங்கள் இங்கே மேலும் சேர்க்கலாம்
+});
+
+    </script>
+</body>
+</html>

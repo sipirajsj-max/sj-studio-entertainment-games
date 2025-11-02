@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Sj Studio</title>
+    <style>
+/* --- அடிப்படை ஸ்டைல்கள் (Base Styles) --- */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f0f2f5; 
+    color: #333;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+.content-wrapper {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* --- தலைப்பு (Header) --- */
+.main-header {
+    background-color: #2c3e50; 
+    color: #ecf0f1;
+    padding: 15px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    font-size: 1.8em;
+    font-weight: 700;
+    color: #f1c40f; 
+}
+
+.main-nav a {
+    color: #ecf0f1;
+    text-decoration: none;
+    margin-left: 25px;
+    font-weight: 400;
+    transition: color 0.3s;
+}
+
+.main-nav a:hover {
+    color: #3498db; 
+}
+
+/* --- About Section Formatting --- */
+.about-section {
+    padding: 40px 0;
+}
+
+.section-title {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 40px;
+    font-size: 2.2em;
+    border-bottom: 3px solid #3498db;
+    display: block; /* மையப்படுத்த உதவுகிறது */
+    padding-bottom: 10px;
+}
+
+/* --- Motto Section --- */
+.mission-section {
+    background-color: #3498db;
+    color: white;
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+    margin-bottom: 40px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.mission-section h3 {
+    margin-top: 0;
+    font-size: 1.5em;
+}
+
+.motto-text {
+    font-size: 1.8em;
+    font-weight: 700;
+    margin: 0;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* --- Card Styles (உள்ளடக்கப் பெட்டிகள்) --- */
+.about-card {
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+}
+
+.card-title {
+    color: #e67e22; /* ஆரஞ்சு தலைப்பு */
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    margin-top: 0;
+}
+
+/* Creator Card Specifics */
+.creator-name {
+    font-size: 1.5em;
+    font-weight: 700;
+    color: #2c3e50;
+    margin-bottom: 15px;
+}
+
+/* Contact Card Specifics */
+.contact-email {
+    color: #3498db;
+    font-weight: 700;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.contact-email:hover {
+    color: #2980b9;
+    text-decoration: underline;
+}
+
+/* Vision List */
+.studio-vision ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.studio-vision li {
+    background: #f7f7f7;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-left: 5px solid #2ecc71; /* பச்சை நிற விளிம்பு */
+    border-radius: 4px;
+}
+
+/* --- அடிக்குறிப்பு (Footer) --- */
+.site-footer {
+    background-color: #2c3e50;
+    color: #bdc3c7;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 40px;
+    font-size: 0.9em;
+}
+
+.site-footer p {
+    margin: 5px 0;
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 600px) {
+    .main-header {
+        flex-direction: column;
+    }
+    .main-nav {
+        margin-top: 10px;
+    }
+    .main-nav a {
+        display: block;
+        margin: 5px 0;
+    }
+    .motto-text {
+        font-size: 1.5em;
+    }
+    .about-card {
+        padding: 20px;
+    }
+}
+
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="main-header">
+        <div class="logo">Sj Studio</div>
+        <nav class="main-nav">
+            <a href="sj studio.html">முகப்பு (Home)</a>
+            <a href="about.html">பற்றி</a>
+            <a href="about.html">தொடர்புக்கு</a>
+        </nav>
+    </header>
+
+    <main class="content-wrapper">
+        <section id="about-content" class="about-section">
+            <h2 class="section-title">✨ Sj Studio பற்றி</h2>
+
+            <div class="mission-section">
+                <h3>எங்கள் நோக்கம் (Our Motto)</h3>
+                <p class="motto-text">"கற்பனையின் வரம்புகளைத் தாண்டி விளையாட்டுகளை உருவாக்குதல்!"</p>
+            </div>
+            
+            <div class="about-card founder-card">
+                <h3 class="card-title">👨‍💻 உருவாக்கியவர் (The Creator)</h3>
+                <p class="creator-name">Sipiraj</p>
+                <p>Sj Studio-வின் நிறுவனர் மற்றும் முதன்மை உருவாக்குநர் (Lead Developer). தரமான மற்றும் பாரம்பரிய விளையாட்டுகளை நவீன தொழில்நுட்பத்தில் வழங்குவதே இவரின் இலக்கு.</p>
+            </div>
+
+            <div class="about-card studio-vision">
+                <h3 class="card-title">தரிசனம் மற்றும் மதிப்புகள்</h3>
+                <p>எளிய, ஆனால் ஆழமான பொழுதுபோக்கு அனுபவங்களை உருவாக்குவதில் நாங்கள் நம்புகிறோம். ஒவ்வொரு விளையாட்டும் மகிழ்ச்சி, சவால் மற்றும் பாரம்பரியத்தின் ஒரு கலவையாக இருக்க வேண்டும்.</p>
+                <ul>
+                    <li>**புதுமை (Innovation):** புதிய முறையில் கிளாசிக் விளையாட்டுகளை அறிமுகப்படுத்துதல்.</li>
+                    <li>**தரம் (Quality):** பிழையற்ற, மென்மையான பயனர் அனுபவத்தை உறுதி செய்தல்.</li>
+                    <li>**மகிழ்ச்சி (Joy):** ஒவ்வொரு பயனருக்கும் சிரிப்பையும் மகிழ்ச்சியையும் தருதல்.</li>
+                </ul>
+            </div>
+            
+            <div class="about-card contact-card">
+                <h3 class="card-title">தொடர்பு கொள்ள</h3>
+                <p>உங்களுக்கு ஏதேனும் கேள்விகள், பரிந்துரைகள் அல்லது வியாபார விசாரணைகள் இருந்தால், எங்களைத் தொடர்பு கொள்ளலாம்.</p>
+                <p>மின்னஞ்சல்: **<a href="mailto:sipirajsj@gmail.com" class="contact-email">sipirajsj@gmail.com</a>**</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; 2025 Sj Studio. அனைத்து உரிமைகளும் பாதுகாக்கப்பட்டவை (All Rights Reserved).</p>
+        <p>உருவாக்கியவர்: **Sipiraj**</p>
+    </footer>
+
+    <script>
+// About பக்கத்தில் எந்த செயல்பாடுகளும் (Interactions) இல்லை.
+// தேவைப்பட்டால், அனிமேஷன்கள் அல்லது ஸ்க்ரோல் நிகழ்வுகளை இங்கே சேர்க்கலாம்.
+
+console.log("About page loaded successfully.");
+
+    </script>
+</body>
+</html>

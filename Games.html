@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sj Studio - Tamil Games</title>
+    <style>
+        /* --- அடிப்படை ஸ்டைல்கள் மற்றும் எழுத்துருக்கள் --- */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f0f2f5; 
+    color: #333;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+.content-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* --- தலைப்பு (Header) --- */
+.main-header {
+    background-color: #2c3e50; /* அடர் நீலம் */
+    color: #ecf0f1;
+    padding: 15px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    font-size: 1.8em;
+    font-weight: 700;
+    color: #f1c40f; /* மஞ்சள் உச்சரிப்பு நிறம் */
+}
+
+.main-nav a {
+    color: #ecf0f1;
+    text-decoration: none;
+    margin-left: 25px;
+    font-weight: 400;
+    transition: color 0.3s;
+}
+
+.main-nav a:hover {
+    color: #3498db; /* நீல உச்சரிப்பு */
+}
+
+/* --- ஹீரோ பகுதி (Hero Section) --- */
+.hero-section {
+    background-color: #3498db;
+    color: white;
+    padding: 60px 20px;
+    margin-bottom: 30px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+/* --- விளையாட்டுகள் பிரிவு (Games Section) --- */
+.section-title {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 30px;
+    font-size: 2em;
+    border-bottom: 2px solid #3498db;
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+.games-section {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap; 
+    gap: 20px;
+}
+
+.game-card {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: calc(33.33% - 20px); 
+    min-width: 280px; 
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.game-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(52, 152, 219, 0.5); 
+}
+
+.game-title {
+    color: #e67e22; /* ஆரஞ்சு தலைப்பு */
+    font-size: 1.4em;
+    margin-top: 0;
+}
+
+/* --- பொதுவான பொத்தான் (Button) --- */
+button {
+    background-color: #3498db;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 15px;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+/* --- விளையாட்டு பகுதி (Game Area) --- */
+.game-area {
+    background: white;
+    padding: 40px 20px;
+    border-radius: 10px;
+    margin-top: 40px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* --- அடிக்குறிப்பு (Footer) --- */
+.site-footer {
+    background-color: #2c3e50;
+    color: #bdc3c7;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 40px;
+    font-size: 0.9em;
+}
+
+/* --- கேம் 2 (5x5) மற்றும் கேம் 3 (Puzzle) ஸ்டைல்கள் --- */
+#board5x5 {
+    display: grid;
+    grid-template-columns: repeat(5, 50px);
+    grid-template-rows: repeat(5, 50px);
+    gap: 2px;
+    margin: 20px auto;
+    background-color: #333;
+    border: 3px solid #34495e;
+    width: 260px; 
+    height: 260px;
+}
+
+.cell5x5 {
+    background-color: #ecf0f1;
+    font-size: 24px;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    cursor: pointer;
+    user-select: none;
+}
+
+#puzzle-board {
+    display: grid;
+    grid-template-columns: repeat(3, 80px);
+    grid-template-rows: repeat(3, 80px);
+    gap: 5px;
+    margin: 20px auto;
+    border: 5px solid #e67e22;
+    width: 250px;
+    height: 250px;
+    border-radius: 8px;
+}
+
+.tile {
+    background-color: #f39c12; 
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 4px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+    user-select: none;
+}
+
+.empty-tile {
+    background-color: #bdc3c7;
+    cursor: default;
+}
+
+/* --- பதிலளிக்கக்கூடிய வடிவமைப்பு (Responsive Design) --- */
+@media (max-width: 900px) {
+    .games-section {
+        justify-content: center;
+    }
+    .game-card {
+        width: calc(50% - 20px); 
+    }
+}
+
+@media (max-width: 600px) {
+    .main-header {
+        flex-direction: column;
+        text-align: center;
+        padding: 15px 10px;
+    }
+    .main-nav {
+        margin-top: 10px;
+    }
+    .main-nav a {
+        margin: 0 10px;
+    }
+    .game-card {
+        width: 100%; 
+        min-width: 0;
+    }
+    .hero-section h2 {
+        font-size: 2em;
+    }
+    #board5x5, #puzzle-board {
+        transform: scale(0.9); 
+        margin: 20px auto;
+    }
+}
+    </style> 
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="main-header">
+        <div class="logo">Sj Studio</div>
+        <nav class="main-nav">
+            <a href="Games.html">விளையாட்டுகள்</a>
+            <a href="sj studio.html">பற்றி</a>
+            <a href="#">தொடர்புக்கு</a>
+        </nav>
+    </header>
+
+    <main class="content-wrapper">
+        <section class="hero-section">
+            <h2>கிளாசிக் தமிழ் விளையாட்டுகளின் உலகம்</h2>
+            <p>Sj Studio-வில் உங்கள் தர்க்கம் மற்றும் அதிர்ஷ்டத்தை சோதிக்கவும்.</p>
+        </section>
+
+        <section id="games-section" class="games-section">
+            <h2 class="section-title">கிடைக்கக்கூடிய விளையாட்டுகள்</h2>
+            
+            <div class="game-card" onclick="startGame(1)">
+                <h3 class="game-title">1. தாயக்கட்டை (Dice Game)</h3>
+                <p>அதிர்ஷ்டம் மற்றும் உத்தியின் பாரம்பரிய தமிழ் விளையாட்டு.</p>
+                <button>விளையாடு</button>
+            </div>
+            
+            <div class="game-card" onclick="startGame(2)">
+                <h3 class="game-title">2. 5x5 Tactic Toe</h3>
+                <p>கிளாசிக் Tic-Tac-Toe-ன் மேம்படுத்தப்பட்ட 5x5 பதிப்பு.</p>
+                <button>விளையாடு</button>
+            </div>
+            
+            <div class="game-card" onclick="startGame(3)">
+                <h3 class="game-title">3. 1-9 எண் புதிர்</h3>
+                <p>எண் புதிர்களை சரியான வரிசையில் ஒழுங்கமைத்து உங்கள் மூளையை சவால் செய்யுங்கள்.</p>
+                <button>விளையாடு</button>
+            </div>
+        </section>
+
+        <section id="game-area" class="game-area">
+            <h2 id="game-area-title">விளையாட்டுப் பகுதி: விளையாட்டைத் தேர்வு செய்யவும்</h2>
+            </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; 2025 Sj Studio. All rights reserved. | The content is for entertainment purposes only.</p>
+    </footer>
+
+    <script >
+        const gameArea = document.getElementById('game-area');
+const areaTitle = document.getElementById('game-area-title');
+let board5x5;
+let currentPlayer5x5;
+let gameActive5x5;
+let puzzleBoard;
+const solutionPuzzle = [1, 2, 3, 4, 5, 6, 7, 8, 0]; 
+
+// விளையாட்டு தேர்வுக்கு பயன்படுத்தப்படும் முதன்மை செயல்பாடு
+function startGame(gameId) {
+    gameArea.innerHTML = ''; 
+    gameArea.style.textAlign = 'center';
+
+    switch (gameId) {
+        case 1:
+            areaTitle.textContent = 'விளையாட்டுப் பகுதி: தாயக்கட்டை';
+            loadThyakkaAddai();
+            break;
+        case 2:
+            areaTitle.textContent = 'விளையாட்டுப் பகுதி: 5x5 Tactic Toe';
+            loadTacticToe5x5();
+            break;
+        case 3:
+            areaTitle.textContent = 'விளையாட்டுப் பகுதி: 1-9 எண் புதிர்';
+            loadNumberPuzzle();
+            break;
+        default:
+            areaTitle.textContent = 'விளையாட்டுப் பகுதி: விளையாட்டைத் தேர்வு செய்யவும்';
+    }
+}
+
+// ----------------------------------------------------
+// கேம் 1: தாயக்கட்டை (Thyakka Addai)
+// ----------------------------------------------------
+function loadThyakkaAddai() {
+    gameArea.innerHTML = `
+        <h2>🎲 தாயக்கட்டை (Dice Roll)</h2>
+        <p>தாயத்தை உருட்ட, பட்டனை அழுத்தவும்.</p>
+        <div id="dice-result" style="font-size: 4em; margin: 20px; color: #e67e22;">?</div>
+        <button onclick="rollDice()">தாயத்தை உருட்டு</button>
+        <div id="result" style="font-weight: bold; margin-top: 10px;"></div>
+    `;
+}
+
+function rollDice() {
+    const resultElement = document.getElementById('dice-result');
+    const resultText = document.getElementById('result');
+    const roll = Math.floor(Math.random() * 6) + 1; 
+
+    resultElement.textContent = roll;
+    resultText.textContent = `நீங்கள் பெற்ற எண்: ${roll}!`;
+
+    if (roll === 1 || roll === 6) {
+        resultText.textContent += " மீண்டும் ஒரு வாய்ப்பு கிடைக்கும்!";
+    }
+}
+
+// ----------------------------------------------------
+// கேம் 2: 5x5 Tactic Toe (Tic-Tac-Toe)
+// ----------------------------------------------------
+function loadTacticToe5x5() {
+    gameArea.innerHTML = `
+        <h2>❌⭕ 5x5 Tactic Toe</h2>
+        <div id="status5x5" style="margin-bottom: 15px; color: #3498db; font-weight: bold;">ஆட்டத்தைத் தொடங்கவும்! X க்கான முறை</div>
+        <div id="board5x5"></div>
+        <button onclick="initializeBoard5x5()">புதிய ஆட்டம்</button>
+    `;
+    initializeBoard5x5();
+}
+
+function initializeBoard5x5() {
+    board5x5 = Array(25).fill(null);
+    currentPlayer5x5 = 'X';
+    gameActive5x5 = true;
+    document.getElementById('status5x5').textContent = `X க்கான முறை`;
+    const boardElement = document.getElementById('board5x5');
+    boardElement.innerHTML = '';
+    
+    for (let i = 0; i < 25; i++) {
+        const cell = document.createElement('div');
+        cell.classList.add('cell5x5');
+        cell.dataset.index = i;
+        cell.addEventListener('click', handleCellClick5x5);
+        boardElement.appendChild(cell);
+    }
+}
+
+function handleCellClick5x5(event) {
+    const index = event.target.dataset.index;
+
+    if (board5x5[index] || !gameActive5x5) return;
+
+    board5x5[index] = currentPlayer5x5;
+    event.target.textContent = currentPlayer5x5;
+    event.target.style.color = currentPlayer5x5 === 'X' ? '#e74c3c' : '#2ecc71';
+    
+    if (checkWin5x5(currentPlayer5x5)) {
+        document.getElementById('status5x5').textContent = `${currentPlayer5x5} வெற்றி பெற்றார்!`;
+        gameActive5x5 = false;
+        return;
+    }
+
+    if (board5x5.every(cell => cell)) {
+        document.getElementById('status5x5').textContent = "ஆட்டம் டிரா ஆனது!";
+        gameActive5x5 = false;
+        return;
+    }
+
+    currentPlayer5x5 = currentPlayer5x5 === 'X' ? 'O' : 'X';
+    document.getElementById('status5x5').textContent = `${currentPlayer5x5} க்கான முறை`;
+}
+
+function checkWin5x5(player) {
+    // ஒரு வரிசையில் 3 செல்களைக் கண்டறியும் தர்க்கம்
+    const winConditions = [];
+    const size = 5;
+
+    // கிடைமட்டம் (Rows)
+    for (let i = 0; i < size; i++) {
+        for (let j = 0; j <= size - 3; j++) { 
+            winConditions.push([i * size + j, i * size + j + 1, i * size + j + 2]);
+        }
+    }
+    // செங்குத்து (Columns)
+    for (let i = 0; i < size; i++) {
+        for (let j = 0; j <= size - 3; j++) {
+            winConditions.push([j * size + i, (j + 1) * size + i, (j + 2) * size + i]);
+        }
+    }
+    // குறுக்கு (Diagonals)
+    for (let i = 0; i <= size - 3; i++) {
+        for (let j = 0; j <= size - 3; j++) {
+            winConditions.push([i * size + j, (i + 1) * size + j + 1, (i + 2) * size + j + 2]); // Down-Right
+        }
+    }
+    for (let i = 0; i <= size - 3; i++) {
+        for (let j = size - 1; j >= 2; j--) {
+            winConditions.push([i * size + j, (i + 1) * size + j - 1, (i + 2) * size + j - 2]); // Down-Left
+        }
+    }
+
+    return winConditions.some(condition => {
+        return condition.every(index => board5x5[index] === player);
+    });
+}
+
+
+// ----------------------------------------------------
+// கேம் 3: 1-9 எண் புதிரை ஒழுங்குபடுத்துதல்
+// ----------------------------------------------------
+function loadNumberPuzzle() {
+    gameArea.innerHTML = `
+        <h2>🔢 1-9 எண் புதிரை ஒழுங்குபடுத்துதல் (Sliding Puzzle)</h2>
+        <p>எண்களை 1 முதல் 9 வரை வரிசைப்படுத்த நகர்த்தவும்.</p>
+        <div id="puzzle-board"></div>
+        <div id="message" style="color: #e67e22; font-weight: bold;"></div>
+        <button onclick="initializePuzzle()">புதிய புதிரை உருவாக்கு</button>
+    `;
+    initializePuzzle();
+}
+
+function initializePuzzle() {
+    let tiles = [1, 2, 3, 4, 5, 6, 7, 8, 0];
+    
+    // தீர்க்கக்கூடிய வகையில் எண்களைக் கலக்குகிறது (Shuffling)
+    for (let i = tiles.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [tiles[i], tiles[j]] = [tiles[j], tiles[i]];
+    }
+
+    if (isSolvable(tiles) === false) {
+        [tiles[0], tiles[1]] = [tiles[1], tiles[0]];
+    }
+
+    puzzleBoard = tiles;
+    renderPuzzle();
+    document.getElementById('message').textContent = 'ஆட்டத்தைத் தொடங்கவும்!';
+}
+
+function isSolvable(board) {
+    let inversions = 0;
+    for (let i = 0; i < 9; i++) {
+        for (let j = i + 1; j < 9; j++) {
+            if (board[i] !== 0 && board[j] !== 0 && board[i] > board[j]) {
+                inversions++;
+            }
+        }
+    }
+    // 3x3 புதிர் எப்போதும் தீர்க்கக்கூடியதாக இருக்க வேண்டும்
+    return inversions % 2 === 0;
+}
+
+function renderPuzzle() {
+    const boardElement = document.getElementById('puzzle-board');
+    boardElement.innerHTML = '';
+    
+    puzzleBoard.forEach((number, index) => {
+        const tile = document.createElement('div');
+        tile.classList.add('tile');
+        if (number === 0) {
+            tile.classList.add('empty-tile');
+            tile.textContent = '';
+        } else {
+            tile.textContent = number;
+            tile.addEventListener('click', () => moveTile(index));
+        }
+        boardElement.appendChild(tile);
+    });
+}
+
+function moveTile(clickedIndex) {
+    const emptyIndex = puzzleBoard.indexOf(0);
+    
+    const rowClicked = Math.floor(clickedIndex / 3);
+    const colClicked = clickedIndex % 3;
+    const rowEmpty = Math.floor(emptyIndex / 3);
+    const colEmpty = emptyIndex % 3;
+
+    const isAdjacent = (Math.abs(rowClicked - rowEmpty) + Math.abs(colClicked - colEmpty) === 1);
+
+    if (isAdjacent) {
+        [puzzleBoard[clickedIndex], puzzleBoard[emptyIndex]] = [puzzleBoard[emptyIndex], puzzleBoard[clickedIndex]];
+        renderPuzzle();
+        
+        if (checkWinPuzzle()) {
+            document.getElementById('message').textContent = 'வெற்றி! நீங்கள் புதிரைத் தீர்த்துவிட்டீர்கள்!';
+            document.getElementById('puzzle-board').querySelectorAll('.tile').forEach(t => t.style.cursor = 'default');
+        }
+    }
+}
+
+function checkWinPuzzle() {
+    return puzzleBoard.every((number, index) => number === solutionPuzzle[index]);
+}
+
+// பக்கத்தை ஏற்றும் போது, தலைப்பை மட்டும் காட்டுகிறது
+document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('game-area-title').textContent = 'விளையாட்டுப் பகுதி: விளையாட்டைத் தேர்வு செய்யவும்';
+});
+    </script>
+</body>
+</html>
